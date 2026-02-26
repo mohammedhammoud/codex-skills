@@ -31,13 +31,14 @@ What this does:
 
 Standard flow:
 
-1. Make changes
-2. Run `$review`
-3. Fix changes if needed
-4. Run `$commit`
-5. Accept commit message
-6. Run `$create-pull-request`
-7. Continue if everything looks good
+1. For bug investigations, run `$debug` first to perform strict, step-by-step root-cause analysis.
+2. Make changes
+3. Run `$review`
+4. Fix changes if needed
+5. Run `$commit`
+6. Accept commit message
+7. Run `$create-pull-request`
+8. Continue if everything looks good
 
 ## 4. Notes
 
@@ -45,3 +46,10 @@ Standard flow:
 - Do not modify `~/.codex/skills/.system` manually.
 - Prefer small, focused commits.
 - Re-run `./link.sh` after adding a new skill folder.
+
+## 5. Skills
+
+- `commit`: Generate and optionally apply a Conventional Commit from staged changes (`commit/SKILL.md`)
+- `create-pull-request`: Create or update a draft PR from git diff (title + body) (`create-pull-request/SKILL.md`)
+- `debug`: Strict debugging that starts from a user-specified file, requires a clear problem statement, and follows execution flow layer by layer until root cause is proven or missing evidence is explicitly identified (`debug/SKILL.md`)
+- `review`: Review staged or unstaged changes for bugs, risks, and minimal risk-reducing fixes (`review/SKILL.md`)
