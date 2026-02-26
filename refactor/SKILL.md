@@ -35,10 +35,19 @@ RULES
   - replacing repeated literals with well-named constants (avoid magic numbers/strings)
   - consistency and non-breaking safety checks
 - Do NOT weaken correctness guarantees for convenience (e.g. broader/looser typing, unsafe casts, catch-all fallbacks, removed validations).
+- Do NOT bypass static checks with shortcuts (language-agnostic): disabling type/lint rules, broad suppressions, blanket ignores, or “trust me” casts/assertions.
 - Keep error handling semantics and null/empty/default behavior equivalent.
 - If safety cannot be guaranteed from available context, print:
   `Refactor canceled: cannot guarantee behavior safety within scope.`
   and stop.
+
+SELF-ITERATION (required)
+
+Before proposing the patch:
+1. Produce a first draft.
+2. Critique it for avoidable churn, behavior drift risk, and safety-check bypasses.
+3. Refine once more before presenting.
+Do this internally; do not ask the user during this loop.
 
 DO NOT
 
