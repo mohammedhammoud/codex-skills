@@ -1,6 +1,12 @@
 # codex-skills
 
-User-defined Codex skills, versioned in Git.
+My personal Codex skills and workflows, versioned in Git.
+
+I am sharing this repository publicly as a reference for how I work with AI-assisted development. These skills are optimized for my own setup and preferences, but parts of them may still be useful or adaptable for others.
+
+If you want more context on the thinking behind this setup, I wrote about it here:
+
+- <https://mohammedhammoud.com/blog/how-i-turned-codex-cli-into-a-structured-engineering-assistant/>
 
 ## 1. Structure
 
