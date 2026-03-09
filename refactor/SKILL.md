@@ -33,6 +33,9 @@ RULES
 - Preserve external contracts (public API, file/module names, exported symbols, schemas, interfaces, signatures) unless explicitly requested.
 - No new features, no bug-fix scope creep, no architectural rewrites.
 - Keep diffs small and local.
+- In the selected scope, batch clearly safe, behavior-preserving refactors into one coherent proposal rather than many tiny proposals.
+- Split into multiple rounds only if combining them would materially increase behavior-drift risk or make review less safe.
+- Before finishing, check whether any additional low-risk refactors remain in the same scope. If yes, include them in the same proposal.
 - Improve only:
   - duplication (DRY)
   - naming clarity
@@ -50,9 +53,10 @@ RULES
 SELF-ITERATION (required)
 
 Before proposing the patch:
-1. Produce a first draft.
-2. Critique it for avoidable churn, behavior drift risk, and safety-check bypasses.
-3. Refine once more before presenting.
+1. Produce a first draft containing all safe refactors in scope.
+2. Critique it for avoidable churn, behavior drift risk, over-batching, and safety-check bypasses.
+3. Remove anything non-essential or risky.
+4. Refine once more into one coherent batched proposal when safe.
 Do this internally; do not ask the user during this loop.
 
 DO NOT
@@ -69,6 +73,7 @@ OUTPUT FORMAT
 1. Summary
 2. Refactor Plan
 3. Proposed Patch
+- Include all worthwhile low-risk, behavior-preserving refactors in scope; do not artificially split independent safe cleanups into separate proposals.
 4. Risk Level: low | medium | high
 
 Then print exactly:
@@ -79,7 +84,7 @@ APPLY PHASE
 
 Only if next user message is exactly `continue`:
 
-- Apply only the described refactor.
+- Apply the full proposed refactor set.
 - Modify only in-scope files for selected mode.
 - Stop immediately after applying.
 
