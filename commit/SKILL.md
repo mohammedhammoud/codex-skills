@@ -42,4 +42,5 @@ Execution rules:
 - Do NOT commit unless the next user message is exactly: continue
 - If user replies `continue`, run:
   `git commit -m "<message>"`
+- Never use `git commit --no-verify` (or any commit command with `--no-verify`).
 - Otherwise, exit silently.

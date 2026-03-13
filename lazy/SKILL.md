@@ -74,6 +74,7 @@ Guardrails:
 - Do not force a refactor when the safest choice is to keep the implementation as-is.
 - Do not create a PR from the default branch.
 - Use a single conventional commit message for the final commit and PR title.
+- Never use `--no-verify` for commits.
 - Keep the PR body limited to the auto-generated change summary block managed by the PR skill.
 
 Final output:
