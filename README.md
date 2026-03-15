@@ -1,4 +1,4 @@
-# codex-skills
+# ai-cli-skills
 
 My personal Codex and GitHub Copilot skills and workflows.
 
@@ -31,8 +31,8 @@ Prerequisites:
 - GitHub authentication configured for `gh` when using PR automation
 
 ```bash
-git clone <your-fork-or-repo-url> ~/code/codex-skills
-cd ~/code/codex-skills
+git clone <your-fork-or-repo-url> ~/code/ai-cli-skills
+cd ~/code/ai-cli-skills
 ./link.sh
 ```
 
