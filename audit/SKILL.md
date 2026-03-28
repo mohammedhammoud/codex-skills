@@ -1,21 +1,23 @@
 ---
-name: review
-description: Review staged or unstaged changes for bugs, risks, and minimal risk-reducing fixes
-argument-hint: "staged | changes"
+name: audit
+description: Audit staged, unstaged, or file-scoped changes for bugs, risks, and minimal risk-reducing fixes
+argument-hint: "staged | changes | <file-path>"
 ---
 
 Expected input (required):
 
 - `staged`
 - `changes`
+- `<file-path>`
 
 Argument must be exactly one of:
 - staged
 - changes
+- a file path or diff target path
 
-If missing or invalid:
+If argument is missing:
 Print ONLY:
-Usage: review staged | review changes
+Usage: audit staged | audit changes | audit <file-path>
 Exit.
 
 ---
@@ -38,6 +40,16 @@ If argument is `changes`:
 - Run: `git diff --stat`
 - Run: `git diff`
 
+If argument is `<file-path>`:
+- Run: `git diff --cached --stat -- <file-path>`
+- Run: `git diff --cached -- <file-path>`
+- Run: `git diff --stat -- <file-path>`
+- Run: `git diff -- <file-path>`
+- The path may refer to a deleted or renamed diff target and does not need to exist in the working tree.
+- If both staged and unstaged diffs are empty for that path, print ONLY:
+  `No changes found for <file-path>.`
+  and exit.
+
 Only inspect the diff output.
 Do NOT scan the entire repository.
 Do NOT run tests.
@@ -47,7 +59,7 @@ If the diff alone is not enough to prove a claim, say so explicitly and lower co
 
 ---
 
-Review goals:
+Audit goals:
 
 Detect:
 

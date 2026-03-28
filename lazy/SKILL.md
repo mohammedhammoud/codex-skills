@@ -1,6 +1,6 @@
 ---
 name: lazy
-description: Fully automate a user request from a fresh branch off the default branch through implementation, review, safe refactor, commit, push, and draft PR, auto-iterating until the result is good enough or a real blocker is found
+description: Fully automate a user request from a fresh branch off the default branch through implementation, audit, safe refactor, commit, push, and draft PR, auto-iterating until the result is good enough or a real blocker is found
 argument-hint: "Describe the task and constraints for end-to-end delivery"
 ---
 
@@ -14,7 +14,7 @@ Repository policy:
 
 This is a wrapper skill. Use these repository skills as the baseline for quality and output rules:
 
-- `review`
+- `audit`
 - `refactor`
 - `commit`
 - `create-pull-request`
@@ -45,8 +45,8 @@ Workflow:
    - Use a short lowercase kebab-case branch name derived from the task.
 5. Implement the requested change.
 6. Run the smallest relevant validation for the touched area.
-7. Apply the `review` skill's standards to the current diff.
-   - If review finds a real issue, fix it and review again.
+7. Apply the `audit` skill's standards to the current diff.
+   - If the audit finds a real issue, fix it and audit again.
 8. Apply the `refactor` skill's standards only if the refactor is clearly behavior-preserving and worth the churn.
    - If no worthwhile refactor exists, skip it.
 9. Re-run relevant validation after any fix or refactor.
@@ -61,7 +61,7 @@ Workflow:
 Interaction override:
 
 - This skill is intentionally automatic.
-- Do not stop for the `continue` confirmations used by `review`, `refactor`, `commit`, or `create-pull-request` when the result is good enough to proceed safely.
+- Do not stop for the `continue` confirmations used by `audit`, `refactor`, `commit`, or `create-pull-request` when the result is good enough to proceed safely.
 - Treat a satisfactory result in those phases as an internal automatic `continue`.
 - If a phase is not good enough, iterate internally instead of asking the user to continue.
 - Stop only for real blockers such as unsafe checkout, missing required context, failed validation you cannot resolve, push failure, or PR creation failure.
@@ -71,7 +71,7 @@ Guardrails:
 - Do not edit unrelated files.
 - Do not invent extra features beyond the request.
 - Do not weaken types, validations, or error handling for convenience.
-- Do not skip review.
+- Do not skip audit.
 - Do not force a refactor when the safest choice is to keep the implementation as-is.
 - Do not create a PR from the default branch.
 - Use a single conventional commit message for the final commit and PR title.

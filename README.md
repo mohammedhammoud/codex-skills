@@ -42,20 +42,21 @@ What `./link.sh` does:
 
 - If `~/.codex` exists, symlinks each skill directory from this repo into `~/.codex/skills`
 - If `~/.copilot` exists, symlinks each skill directory from this repo into `~/.copilot/skills`
+- Removes stale symlinks in those skill directories when a skill from this repo is renamed or removed
 - Skips any CLI home directory that is not present
 
 ## 3. Typical Workflow
 
 1. For bug investigations, invoke the `debug` skill first for strict, step-by-step root-cause analysis.
 2. Make changes, or invoke the `refactor` skill for behavior-preserving structural cleanup.
-3. Invoke the `review` skill.
+3. Invoke the `audit` skill.
 4. Fix the changes if needed.
 5. Invoke the `commit` skill.
 6. Accept the suggested commit message.
 7. Invoke the `create-pull-request` skill.
 8. Continue if everything looks good.
 
-For a mostly hands-off flow, I use the `lazy` skill to create a branch, implement the change, review it, commit it, push it, and open or update a draft PR.
+For a mostly hands-off flow, I use the `lazy` skill to create a branch, implement the change, run an audit, commit it, push it, and open or update a draft PR.
 
 ## 4. Repo Notes
 
@@ -68,7 +69,7 @@ For a mostly hands-off flow, I use the `lazy` skill to create a branch, implemen
 - `commit`: Generate and optionally apply a Conventional Commit from staged changes (`commit/SKILL.md`)
 - `create-pull-request`: Create or update a draft PR from git diff (title + body) (`create-pull-request/SKILL.md`)
 - `debug`: Debug from an entrypoint or symptom with quick (default) and strict modes, then propose a minimal patch with evidence (`debug/SKILL.md`)
+- `audit`: Audit staged, unstaged, or file-scoped changes for bugs, risks, and minimal risk-reducing fixes (`audit/SKILL.md`)
 - `lazy`: Run the end-to-end delivery flow from a fresh branch through validation, commit, push, and draft PR (`lazy/SKILL.md`)
 - `refactor`: Propose minimal, safe code improvements without changing behavior (`refactor/SKILL.md`)
-- `review`: Review staged or unstaged changes for bugs, risks, and minimal risk-reducing fixes (`review/SKILL.md`)
 - `split-commits`: Group current changes into multiple commitlint-compliant commits and apply on confirmation (`split-commits/SKILL.md`)
