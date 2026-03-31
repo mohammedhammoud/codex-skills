@@ -17,7 +17,7 @@ This is a wrapper skill. Use these repository skills as the baseline for quality
 - `audit`
 - `refactor`
 - `commit`
-- `create-pull-request`
+- `create-or-update-pr`
 
 At runtime, open those skills and follow their instructions for the relevant phase.
 This skill overrides only sequencing, automation, and blocker handling.
@@ -56,12 +56,12 @@ Workflow:
 11. Stage the intended changes.
 12. Apply the `commit` skill's standards and create the commit.
 13. Push the branch to the relevant remote.
-14. Apply the `create-pull-request` skill's standards and create or update a draft PR targeting the default branch.
+14. Apply the `create-or-update-pr` skill's standards and create or update a draft PR targeting the default branch.
 
 Interaction override:
 
 - This skill is intentionally automatic.
-- Do not stop for the `continue` confirmations used by `audit`, `refactor`, `commit`, or `create-pull-request` when the result is good enough to proceed safely.
+- Do not stop for the `continue` confirmations used by `audit`, `refactor`, `commit`, or `create-or-update-pr` when the result is good enough to proceed safely.
 - Treat a satisfactory result in those phases as an internal automatic `continue`.
 - If a phase is not good enough, iterate internally instead of asking the user to continue.
 - Stop only for real blockers such as unsafe checkout, missing required context, failed validation you cannot resolve, push failure, or PR creation failure.

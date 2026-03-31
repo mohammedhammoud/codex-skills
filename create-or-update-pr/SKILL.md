@@ -1,6 +1,6 @@
 ---
-name: create-pull-request
-description: Create or update a draft PR from git diff (title + body)
+name: create-or-update-pr
+description: Update the existing PR for the current branch when one exists, otherwise create a draft PR from git diff
 argument-hint: "Optional: say if unstaged changes should be included"
 ---
 
@@ -20,6 +20,8 @@ Execution permissions:
   - update PR title and body
 
 Use this skill when the user asks to create or update PR metadata.
+If an open PR already exists for the current branch, update that PR.
+Do not create a second PR for the same branch when an open one already exists.
 
 Repository policy:
 
@@ -77,7 +79,6 @@ Workflow:
 
 - Inside the marker block, ONLY these sections are allowed:
   - `## Changes`
-  - optional `## Notes`
 - No other sections allowed (no `Summary`, no `Testing`).
 
 9. Validate before applying:
@@ -89,7 +90,6 @@ Workflow:
   - `<!-- auto-pr-metadata:end -->`
 - body must contain:
   - `## Changes` with 3–8 bullets
-  - optional `## Notes` with 0–3 bullets
 - The marker block must be the ONLY auto-generated content you create/overwrite.
 
 10. Dry-run output first:
@@ -107,16 +107,18 @@ Workflow:
   - If the current branch has not been pushed yet, push it to the relevant remote before opening or updating the PR.
 
 - Detect whether an open PR exists for the current branch (prefer PR targeting the default branch).
+- If one exists, update that PR instead of creating another PR.
 
 If PR exists:
 
+- This is the default path whenever an open PR already exists for the current branch.
 - First evaluate whether the current PR title and current marker block still accurately reflect the current diff.
 - If they are still accurate, keep them as-is, even when wording differs from newly generated candidate metadata.
 - Update the PR title ONLY when the current title is outdated, inaccurate, or invalid by repository/title rules.
 - Update ONLY the content inside the markers when the current marker content is outdated, inaccurate, missing required sections, or markers are missing:
   - `<!-- auto-pr-metadata:start -->`
   - `<!-- auto-pr-metadata:end -->`
-- Inside the marker block, edits may add, remove, or rewrite bullets/sections as needed to match the current diff.
+- Inside the marker block, edits may add, remove, or rewrite bullets as needed to match the current diff.
 - Preserve all user-authored text outside the markers.
 - If markers do not exist yet in the PR body, prepend the marker block at the top and keep the existing body below it unchanged.
 - When both title and marker block are already accurate for the current diff, do not send an update call.

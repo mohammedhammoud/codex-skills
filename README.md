@@ -53,7 +53,7 @@ What `./link.sh` does:
 4. Fix the changes if needed.
 5. Invoke the `commit` skill.
 6. Accept the suggested commit message.
-7. Invoke the `create-pull-request` skill.
+7. Invoke the `create-or-update-pr` skill.
 8. Continue if everything looks good.
 
 For a mostly hands-off flow, I use the `lazy` skill to create a branch, implement the change, run an audit, commit it, push it, and open or update a draft PR.
@@ -67,7 +67,7 @@ For a mostly hands-off flow, I use the `lazy` skill to create a branch, implemen
 ## 5. Skills
 
 - `commit`: Generate and optionally apply a Conventional Commit from staged changes (`commit/SKILL.md`)
-- `create-pull-request`: Create or update a draft PR from git diff (title + body) (`create-pull-request/SKILL.md`)
+- `create-or-update-pr`: Update the existing PR for the current branch when one exists, otherwise create a draft PR from git diff (`create-or-update-pr/SKILL.md`)
 - `debug`: Debug from an entrypoint or symptom with quick (default) and strict modes, then propose a minimal patch with evidence (`debug/SKILL.md`)
 - `audit`: Audit staged, unstaged, or file-scoped changes for bugs, risks, and minimal risk-reducing fixes (`audit/SKILL.md`)
 - `lazy`: Run the end-to-end delivery flow from a fresh branch through validation, commit, push, and draft PR (`lazy/SKILL.md`)
