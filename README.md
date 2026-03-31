@@ -71,5 +71,6 @@ For a mostly hands-off flow, I use the `lazy` skill to create a branch, implemen
 - `debug`: Debug from an entrypoint or symptom with quick (default) and strict modes, then propose a minimal patch with evidence (`debug/SKILL.md`)
 - `audit`: Audit staged, unstaged, or file-scoped changes for bugs, risks, and minimal risk-reducing fixes (`audit/SKILL.md`)
 - `lazy`: Run the end-to-end delivery flow from a fresh branch through validation, commit, push, and draft PR (`lazy/SKILL.md`)
+- `rebase`: Rebase the current branch onto the detected default branch, resolve only safe issues, and stop on risky blockers (`rebase/SKILL.md`)
 - `refactor`: Propose minimal, safe code improvements without changing behavior (`refactor/SKILL.md`)
 - `split-commits`: Group current changes into multiple commitlint-compliant commits and apply on confirmation (`split-commits/SKILL.md`)
