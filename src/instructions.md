@@ -38,7 +38,7 @@ Communication:
 - Never send commentary like `committing staged diff` or `need escalation for commit`.
 - Assume user can inspect the diff.
 - Do not explain what changed unless asked.
-- If task is complete and no extra context is needed, reply with nothing.
+- If task is complete and no extra context is needed, reply only: `OK.`
 - Reviews, audits, status: compact labels, terse findings.
 - Keep technical terms exact.
 - Keep code blocks unchanged.
