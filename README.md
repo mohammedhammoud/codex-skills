@@ -1,4 +1,4 @@
-# ai-cli-skills
+# ai-cli-kit
 
 Personal Codex and GitHub Copilot skills and workflows.
 
@@ -33,8 +33,8 @@ Prerequisites:
 - `rtk` recommended
 
 ```bash
-git clone <your-fork-or-repo-url> ~/code/ai-cli-skills
-cd ~/code/ai-cli-skills
+git clone <your-fork-or-repo-url> ~/code/ai-cli-kit
+cd ~/code/ai-cli-kit
 ./install.sh
 ```
 

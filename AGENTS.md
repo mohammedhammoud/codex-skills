@@ -4,7 +4,7 @@ Scope:
 Whole repo.
 
 Purpose:
-Repo stores reusable AI CLI skills.
+Repo stores reusable AI CLI prompts, skills, and setup.
 No project-specific logic.
 Source lives in `src/`.
 
