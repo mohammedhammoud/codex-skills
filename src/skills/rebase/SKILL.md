@@ -6,19 +6,21 @@ argument-hint: "Optional: <target-branch> plus extra rebase constraints or confl
 
 Use for local rebase only. Never push.
 
-Target branch:
+Target:
 
 - default: repo default/base branch
 - override only when user gives explicit branch name
 - if override is ambiguous, same as current branch, or cannot be resolved safely, stop and ask
 
-Repo Git workflow and safety rules override defaults. Read `AGENTS.md` first.
+Read `AGENTS.md` first. Repo Git/safety rules win.
+
+Allowed:
 
 - `git` to inspect branch, remote, base branch, status, diff, rebase state, history; fetch target; run `git rebase` and `git rebase --continue`; stage resolved files with path-scoped `git add`
 - edit only conflicted files and smallest safe scope
 - run smallest relevant validation when it meaningfully reduces merge risk
 
-Start conditions:
+Start:
 
 - current checkout must be named non-default branch
 - working tree must be clean
@@ -26,13 +28,11 @@ Start conditions:
 - do not auto-stash and do not create temp commits
 - if branch tracks remote, explain that rebasing rewrites local SHAs and may later require force-push; since this skill never pushes, ask before local-only rebase
 
+Refuse:
+
 - refuse if automation looks unsafe
-- say exactly:
-  `Rebase refused: I do not consider this safe to perform automatically because <reason>. You need to do this rebase manually.`
+- say exactly: `Rebase refused: I do not consider this safe to perform automatically because <reason>. You need to do this rebase manually.`
 - if rebase already in progress when risk becomes too high, stop and say user must finish or abort manually
-
-High-risk examples:
-
 - many conflicted files or unrelated conflict areas
 - semantic conflicts with unclear intent
 - large deletions, file moves plus edits, rename/delete ambiguity
@@ -65,7 +65,7 @@ Workflow:
 6. If rebase finishes cleanly, run smallest relevant validation for touched area when meaningful.
 7. End with concise status. State that nothing was pushed.
 
-Ask user immediately when:
+Ask:
 
 - tree dirty
 - detached `HEAD`, on default branch, or already on target branch
@@ -78,6 +78,8 @@ Ask user immediately when:
 - resolution would require deleting file, large code region, or lockfile entry without clear evidence
 - validation fails and minimal fix is unclear
 - repo enters unexpected rebase state
+
+Guardrails:
 
 - never run `git push`
 - never run `git push --force` or `git push --force-with-lease`
@@ -94,6 +96,8 @@ Ask user immediately when:
 - never rewrite beyond current local branch history needed for requested rebase
 - if next step could discard work, hide history, or depends on guess, stop and ask
 - if risk is high, refuse
+
+Output:
 
 - target branch and ref used
 - whether target came from default/base detection or explicit user input

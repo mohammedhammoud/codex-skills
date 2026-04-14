@@ -5,30 +5,14 @@ argument-hint: "[entrypoint] [expected] [actual] [repro] [mode quick|strict]"
 ---
 
 Use for root-cause debugging from file, symptom, or error.
-Repo constraints override defaults. Read `AGENTS.md` first.
+Read `AGENTS.md` first. Repo rules win.
 
-Preferred input:
+Input:
 
-1. entrypoint file
-2. expected behavior
-3. actual behavior
-4. repro steps
-5. optional error, logs, stack trace
-
-Minimum start:
-
-- entrypoint file, or
-- one concrete symptom
-
-If input is incomplete:
-- start with what exists
-- list missing items as helpful context, not blockers
-- ask only for next highest-value missing detail when needed
-
-Modes:
-
-- `quick` default: fast triage, best evidence-backed cause, smallest next step
-- `strict`: prove full evidence chain before proposing fix
+Preferred: entrypoint, expected, actual, repro, optional error/logs/stack.
+Minimum: entrypoint or one concrete symptom.
+If input is incomplete: start with what exists; list missing context; ask only for the highest-value next detail.
+Modes: `quick` default; `strict` proves end to end.
 
 Rules:
 
@@ -54,8 +38,9 @@ Output:
 3. Minimal fix: exact patch or snippet, when justified
 4. Risk: low | medium | high
 
-Then print exactly:
-`Type "continue" to apply this minimal patch. Anything else cancels.`
+Then print exactly: `Type "continue" to apply this minimal patch. Anything else cancels.`
+
+Apply:
 
 Apply only if next reply is exactly `continue`:
 
@@ -63,8 +48,5 @@ Apply only if next reply is exactly `continue`:
 - modify only referenced files
 - do not refactor, test, commit, open PR, trigger CI, or invoke other skills
 - stop immediately after applying
-
-Then print:
-
 - `git status --short`
 - `git diff --stat`

@@ -1,20 +1,20 @@
 # AGENTS.md
 
-## Scope
+Scope:
 
 Whole repo.
 
-## Purpose
+Purpose:
 
 Repo stores reusable AI CLI skills.
 No project-specific logic.
 Source lives in `src/`.
 
-## Language
+Language:
 
 Write all files in English.
 
-## Editing Constraints
+Constraints:
 
 - Keep changes minimal.
 - Keep each skill self-contained in its own `SKILL.md`.

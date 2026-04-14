@@ -5,25 +5,16 @@ argument-hint: "Describe the task and constraints for end-to-end delivery"
 ---
 
 Use for hands-off delivery.
-Repo workflow, validation, commit, and PR rules override this skill and referenced skills. Read `AGENTS.md` first.
+Read `AGENTS.md` first. Repo workflow/validation/commit/PR rules win.
 
-Wrapper baseline:
+Wrapper Skills:
 
 - `audit`
 - `refactor`
 - `commit`
 - `create-or-update-pr`
 
-Open those skills at runtime. Follow them for each phase.
-This skill overrides sequencing, automation, and blocker handling only.
-If one is unavailable, keep the contract below.
-
-This skill owns:
-
-1. branching
-2. automation
-3. iteration
-4. final report
+Open those skills at runtime. Follow them. This skill overrides sequencing, automation, and blocker handling only. If one is unavailable, keep the contract below.
 
 Workflow:
 
@@ -50,7 +41,7 @@ Workflow:
 13. Push branch.
 14. Apply `create-or-update-pr` standards and create or update draft PR to default branch.
 
-Interaction override:
+Interaction:
 
 - Run automatically.
 - Do not stop for `continue` prompts from `audit`, `refactor`, `commit`, or `create-or-update-pr` when result is safe and good enough.
@@ -69,6 +60,8 @@ Guardrails:
 - use one conventional commit message for final commit and PR title
 - never use `--no-verify`
 - keep PR body to auto-generated change block only
+
+Output:
 
 - branch name
 - commit message

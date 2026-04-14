@@ -10,7 +10,7 @@ If current branch already has an open PR, update it. No duplicate PR.
 - `git`: inspect branch/remote/default branch, create or switch branch, diff, push current branch
 - `gh`: detect PR, read PR body, create draft PR, update title/body
 
-Repo commit/PR rules override defaults. Read `AGENTS.md` first.
+Read `AGENTS.md` first. Repo commit/PR rules win.
 
 Rules:
 
@@ -27,15 +27,7 @@ Workflow:
 2. If current branch is default branch:
    - do not create or update PR yet
    - suggest branch name from dominant intent, short lowercase slug
-   - default prefixes follow Conventional Commits unless repo says otherwise:
-     - `feat/<slug>`
-     - `fix/<slug>`
-     - `refactor/<slug>`
-     - `docs/<slug>`
-     - `chore/<slug>`
-     - `test/<slug>`
-     - `ci/<slug>`
-     - `perf/<slug>`
+   - default prefixes: `feat|fix|refactor|docs|chore|test|ci|perf/<slug>` unless repo says otherwise
    - check whether branch exists
    - if absent, ask whether to create and switch
    - if present, say so and ask whether to switch
@@ -50,30 +42,31 @@ Workflow:
 6. If user explicitly asked to include unstaged changes, allow that override and say so.
 7. Generate metadata from selected raw diff.
 
-Metadata rules:
+Metadata:
 
 - title: Conventional Commit style, lowercase, max 72 chars, unless repo says otherwise
 - body must always use this exact block:
 
   <!-- auto-pr-metadata:start -->
-
   ## Changes
   - ...
   <!-- auto-pr-metadata:end -->
 
 - inside block, allow only `## Changes`
 - no `Summary`, `Testing`, or other sections
-
 - default title regex unless repo says otherwise:
   `^(feat|fix|refactor|chore|docs|test|ci|perf)(\([a-z0-9._/-]+\))?: [a-z0-9][a-z0-9 -]{0,69}$`
 - body must contain both markers exactly once
 - body must contain `## Changes` with 3-8 bullets
 - marker block is the only auto-generated content you may create or replace
 
+Dry Run:
+
 - print proposed title
 - print full body, including markers
-- then print exactly:
-  `Type 'continue' to apply, anything else to cancel.`
+- then print exactly: `Type 'continue' to apply, anything else to cancel.`
+
+Apply:
 
 Apply only if next reply is exactly `continue`:
 
@@ -86,8 +79,9 @@ Apply only if next reply is exactly `continue`:
    - detect open PR for current branch, preferring one targeting default branch
    - update existing PR if found, else create draft PR targeting default branch
 
-If PR exists:
+Existing PR:
 
+If PR exists:
 - keep current title if still accurate and valid
 - update title only if outdated, inaccurate, or invalid
 - update only marker block content when outdated, inaccurate, missing sections, or markers missing
@@ -95,9 +89,9 @@ If PR exists:
 - if markers missing, prepend block and keep existing body below
 - if title and marker block already match diff, do not send update call
 
-If PR does not exist:
+New PR:
 
+If PR does not exist:
 - create draft PR targeting default branch
 - include marker block on first creation
-
 - print PR URL and final title only

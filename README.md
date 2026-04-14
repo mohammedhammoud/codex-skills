@@ -1,29 +1,30 @@
 # ai-cli-skills
 
-Personal Codex and GitHub Copilot skills.
-Optimized for my setup. Public as reference.
+Personal Codex and GitHub Copilot skills and workflows.
 
-More context:
+This repository is public as a reference for how I work with AI-assisted development. It is optimized for my own setup and preferences, but parts may still be useful for others.
+
+If you want more background on the setup, I wrote about it here:
 
 - <https://mohammedhammoud.com/blog/how-i-turned-codex-cli-into-a-structured-engineering-assistant/>
 
-## 1. Structure
+## Structure
 
 Follow the official skill guidance for the CLIs this repo targets:
 
 - <https://platform.openai.com/docs/guides/skills>
 - <https://docs.github.com/en/copilot/how-tos/copilot-cli/customize-copilot/create-skills>
 
-Layout:
+Repository layout:
 
 - `src/skills/<skill-name>/SKILL.md`
 - `src/skills/<skill-name>/scripts/...` (optional)
 - `src/instructions.md`
 - `install.sh`
 
-## 2. Install / Sync
+## Install / Sync
 
-Need:
+Prerequisites:
 
 - `git`
 - Codex and/or GitHub Copilot CLI with local skills support
@@ -37,44 +38,43 @@ cd ~/code/ai-cli-skills
 ./install.sh
 ```
 
-Path is example only.
+The path above is only an example.
 
-`./install.sh`:
+What `./install.sh` does:
 
-- Offers to install `rtk` if missing
+- Offers to install `rtk` if it is missing
 - If `rtk` exists, offers to run `rtk init` for detected tools
 - If `~/.codex` exists, symlinks each skill directory from `src/skills/` into `~/.codex/skills` and symlinks `src/instructions.md` into `~/.codex/AGENTS.md`
 - If `~/.copilot` exists, symlinks each skill directory from `src/skills/` into `~/.copilot/skills` and symlinks `src/instructions.md` into `~/.copilot/copilot-instructions.md`
-- Removes stale symlinks in those skill directories when a skill from this repo is renamed or removed
-- Skips any CLI home directory that is not present
+- Removes stale symlinks when a skill from this repo is renamed or removed
+- Skips any CLI home directory that does not exist
 
-## 3. Typical Workflow
+## Typical Workflow
 
-1. `debug`
-2. change code or `refactor`
-3. `audit`
-4. fix if needed
-5. `commit`
-6. accept commit message
-7. `create-or-update-pr`
-8. continue if good
+1. Use `debug` for root-cause investigation.
+2. Make the change, or use `refactor` for behavior-preserving cleanup.
+3. Use `audit`.
+4. Fix anything the audit finds.
+5. Use `commit`.
+6. Accept the suggested commit message.
+7. Use `create-or-update-pr`.
 
-Hands-off flow: `lazy`.
+For a mostly hands-off flow, use `lazy`.
 
-## 4. Repo Notes
+## Repo Notes
 
 - Re-run `./install.sh` after changing `src/skills/` or `src/instructions.md`.
-- Prefer `rtk` when installed. Fallback to raw commands when needed.
-- Some skills assume GitHub-hosted repos and detect remotes at runtime.
-- Skills and shared instructions are global symlinks into supported CLI home dirs.
+- `rtk` is preferred when installed, but raw commands still work.
+- Some skills assume a GitHub-hosted repository and detect remotes at runtime.
+- Skills and shared instructions are intended to be globally symlinked into supported CLI home directories.
 
-## 5. Skills
+## Skills
 
-- `commit`: commit message from staged diff (`src/skills/commit/SKILL.md`)
-- `create-or-update-pr`: create or refresh draft PR metadata (`src/skills/create-or-update-pr/SKILL.md`)
-- `debug`: root-cause debug, then minimal patch (`src/skills/debug/SKILL.md`)
-- `audit`: review diff for bugs and risk (`src/skills/audit/SKILL.md`)
-- `lazy`: end-to-end branch, change, validate, commit, push, draft PR (`src/skills/lazy/SKILL.md`)
-- `rebase`: safe local rebase only (`src/skills/rebase/SKILL.md`)
-- `refactor`: safe behavior-preserving cleanup (`src/skills/refactor/SKILL.md`)
-- `split-commits`: split current changes into coherent commits (`src/skills/split-commits/SKILL.md`)
+- `audit`: Review staged, unstaged, or file-scoped changes for bugs and risk
+- `commit`: Generate and optionally apply a Conventional Commit from staged changes
+- `create-or-update-pr`: Update an existing PR for the current branch, or create a draft PR from the diff
+- `debug`: Debug from an entrypoint or symptom, then propose a minimal patch
+- `lazy`: Run the end-to-end flow from branch creation through validation, commit, push, and draft PR
+- `rebase`: Rebase the current branch onto the default branch, resolving only safe issues
+- `refactor`: Propose minimal, safe code improvements without changing behavior
+- `split-commits`: Group current changes into multiple coherent commits and apply them on confirmation

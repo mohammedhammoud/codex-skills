@@ -5,12 +5,11 @@ argument-hint: "staged | changes | <file-path>"
 ---
 
 Use for behavior-preserving cleanup.
-Repo rules on validation, scope, architecture, or output override defaults. Read `AGENTS.md` first.
-
+Read `AGENTS.md` first. Repo rules win.
 Arg: `staged` | `changes` | `<file-path>`.
-If missing, print only `Usage: refactor staged | refactor changes | refactor <file-path>` and exit.
+If missing: print only `Usage: refactor staged | refactor changes | refactor <file-path>`; exit.
 
-Modes:
+Scope:
 
 - `staged`: run `git diff --cached --stat`, then `git diff --cached`
 - `changes`: run `git diff --stat`, then `git diff`
@@ -36,12 +35,14 @@ Rules:
 - keep error handling and null/empty/default behavior equivalent
 - if safety cannot be guaranteed, print `Refactor canceled: cannot guarantee behavior safety within scope.` and stop
 
+Self-Check:
+
 1. draft all safe refactors in scope
 2. critique for churn, drift risk, over-batching, or safety bypasses
 3. cut non-essential or risky parts
 4. refine once into one coherent proposal
 
-Do not:
+Do Not:
 
 - modify unrelated files
 - run tests
@@ -49,6 +50,8 @@ Do not:
 - open PRs
 - trigger CI
 - invoke other skills
+
+Output:
 
 1. Summary
 2. Refactor Plan
@@ -59,13 +62,12 @@ Then print exactly:
 `Type "continue" to apply this refactor.`
 `Anything else cancels.`
 
+Apply:
+
 Apply only if next reply is exactly `continue`:
 
 - apply full proposed refactor set
 - modify only in-scope files
 - stop immediately after applying
-
-Then print:
-
 - `git status --short`
 - `git diff --stat`

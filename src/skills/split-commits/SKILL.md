@@ -5,7 +5,7 @@ argument-hint: "Optional: focus area or grouping preference"
 ---
 
 Analyze current changes. Split into coherent commits.
-Repo commit rules override defaults. Read `AGENTS.md` first.
+Read `AGENTS.md` first. Repo commit rules win.
 If commitlint config exists, it is authoritative.
 
 Workflow:
@@ -22,7 +22,7 @@ Workflow:
 3. Generate one message per planned commit.
 4. Validate messages against repo or commitlint rules.
 
-Default message rules when repo is not stricter:
+Message Rules:
 
 - format: `<type>(optional-scope): short description`
 - types: `feat`, `fix`, `refactor`, `chore`, `docs`, `test`, `ci`, `perf`
@@ -30,6 +30,8 @@ Default message rules when repo is not stricter:
 - max 72 chars
 - no trailing period
 - describe outcome or intent, not low-level detail
+
+Output:
 
 - print full commit plan in order
 - for each commit include:
@@ -39,7 +41,7 @@ Default message rules when repo is not stricter:
 - then print exactly:
   `Type 'continue' to create these commits or anything else to cancel.`
 
-Execution:
+Apply:
 
 - create commits only if next reply is exactly `continue`
 - commit in proposed order
@@ -47,5 +49,4 @@ Execution:
 - never use `--no-verify`
 - if safe non-interactive staging is not possible, stop and report blocker
 - otherwise exit silently on any other reply
-
 - print created commit SHAs in order

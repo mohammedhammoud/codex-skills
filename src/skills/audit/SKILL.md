@@ -5,9 +5,10 @@ argument-hint: "staged | changes | <file-path>"
 ---
 
 Arg: `staged` | `changes` | `<file-path>`.
-If missing, print only `Usage: audit staged | audit changes | audit <file-path>` and exit.
+If missing: print only `Usage: audit staged | audit changes | audit <file-path>`; exit.
+Read `AGENTS.md` first. Repo rules win.
 
-Repo rules override this skill. Read `AGENTS.md` first.
+Scope:
 
 - `staged`: run `git diff --cached --stat`, then `git diff --cached`
 - `changes`: run `git diff --stat`, then `git diff`
@@ -25,9 +26,6 @@ Rules:
 - No full-repo scan.
 - Do not test, modify files, or commit.
 - If diff is not enough to prove a claim, say so.
-
-Look for:
-
 - functional bugs
 - regressions
 - edge-case risk
@@ -44,20 +42,11 @@ No architectural refactors.
 
 Output:
 
-- Caveman style: terse labels, terse findings, fragments.
+- Caveman style. Fragments.
 - `Blocking: ...`
 - `Bugs: ...`
 - `Risky patterns: ...`
 - `Missing tests: ...`
 - `Risk: low | medium | high`
-
-If risk is not low:
-
-- propose minimal behavior-preserving fix
-- list affected files
-- explain why it reduces risk
-- then print:
-
-Type 'continue' to apply the fix or anything else to cancel.
-
-If risk is low, print `No changes required.` No refactors. No continue text.
+If risk != low: propose minimal fix, list files, say why, then print `Type 'continue' to apply the fix or anything else to cancel.`
+If risk = low: print `No changes required.` No refactors. No continue text.
