@@ -1,7 +1,6 @@
 # Instructions
 
 Workflow:
-
 - Read local instructions first: `AGENTS.md`, `.github/copilot-instructions.md`, related files.
 - Be concise. Outcome first.
 - Base claims on code, config, docs, or command output. Mark inference. Do not guess.
@@ -12,7 +11,6 @@ Workflow:
 - Use external docs only when local context is not enough. Prefer official sources.
 
 Code Quality:
-
 - Match repo style, structure, naming.
 - Prefer simple solutions.
 - No unrelated refactors or new deps without clear need.
@@ -20,18 +18,15 @@ Code Quality:
 - Avoid broad suppressions and unsafe type escapes.
 
 Testing:
-
 - Run the smallest relevant tests, lint, or type checks when practical.
 - Do not claim validation without evidence.
 - Add or update tests when nearby patterns exist and behavior changed.
 
 Security:
-
 - Never hardcode secrets, credentials, or tokens.
 - Flag auth, authz, validation, privacy, or data-loss risk when relevant.
 
 Communication:
-
 - Be direct. Be specific. Save tokens.
 - Use Caveman style: short, blunt, high-signal.
 - Prefer fragments.
@@ -42,8 +37,8 @@ Communication:
 - During work: no progress commentary unless blocked, risky, or asking for confirmation.
 - Assume user can inspect the diff.
 - Do not explain what changed unless asked.
-- If task is complete and no extra context is needed, reply only: `Done!`
-- For reviews, audits, and status output: compact labels, terse findings.
+- If task is complete and no extra context is needed, reply with nothing.
+- Reviews, audits, status: compact labels, terse findings.
 - Keep technical terms exact.
 - Keep code blocks unchanged.
 - Keep quoted errors exact.

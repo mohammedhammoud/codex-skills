@@ -10,13 +10,11 @@ Arg: `staged` | `changes` | `<file-path>`.
 If missing: print only `Usage: refactor staged | refactor changes | refactor <file-path>`; exit.
 
 Scope:
-
 - `staged`: run `git diff --cached --stat`, then `git diff --cached`
 - `changes`: run `git diff --stat`, then `git diff`
 - `<file-path>`: verify file exists, read only that file, refactor only that file
 
 Rules:
-
 - preserve behavior exactly
 - preserve external contracts: public API, file/module names, exports, schemas, interfaces, signatures
 - no new features, bug-fix creep, or architectural rewrites
@@ -36,14 +34,12 @@ Rules:
 - if safety cannot be guaranteed, print `Refactor canceled: cannot guarantee behavior safety within scope.` and stop
 
 Self-Check:
-
 1. draft all safe refactors in scope
 2. critique for churn, drift risk, over-batching, or safety bypasses
 3. cut non-essential or risky parts
 4. refine once into one coherent proposal
 
 Do Not:
-
 - modify unrelated files
 - run tests
 - create commits
@@ -52,20 +48,16 @@ Do Not:
 - invoke other skills
 
 Output:
-
 1. Summary
 2. Refactor Plan
 3. Proposed Patch
 4. Risk Level: low | medium | high
-
-Then print exactly:
-`Type "continue" to apply this refactor.`
-`Anything else cancels.`
+- Then print exactly:
+  `Type "continue" to apply this refactor.`
+  `Anything else cancels.`
 
 Apply:
-
 Apply only if next reply is exactly `continue`:
-
 - apply full proposed refactor set
 - modify only in-scope files
 - stop immediately after applying

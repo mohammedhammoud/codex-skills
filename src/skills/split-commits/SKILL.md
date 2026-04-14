@@ -9,7 +9,6 @@ Read `AGENTS.md` first. Repo commit rules win.
 If commitlint config exists, it is authoritative.
 
 Workflow:
-
 1. Inspect changes:
    - `git status --short`
    - `git diff --stat`
@@ -23,7 +22,6 @@ Workflow:
 4. Validate messages against repo or commitlint rules.
 
 Message Rules:
-
 - format: `<type>(optional-scope): short description`
 - types: `feat`, `fix`, `refactor`, `chore`, `docs`, `test`, `ci`, `perf`
 - lowercase only
@@ -32,7 +30,6 @@ Message Rules:
 - describe outcome or intent, not low-level detail
 
 Output:
-
 - print full commit plan in order
 - for each commit include:
   - commit number
@@ -42,7 +39,6 @@ Output:
   `Type 'continue' to create these commits or anything else to cancel.`
 
 Apply:
-
 - create commits only if next reply is exactly `continue`
 - commit in proposed order
 - stage only files or hunks that belong to each commit

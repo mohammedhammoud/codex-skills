@@ -9,7 +9,6 @@ If missing: print only `Usage: audit staged | audit changes | audit <file-path>`
 Read `AGENTS.md` first. Repo rules win.
 
 Scope:
-
 - `staged`: run `git diff --cached --stat`, then `git diff --cached`
 - `changes`: run `git diff --stat`, then `git diff`
 - `<file-path>`:
@@ -21,7 +20,6 @@ Scope:
   - if both diffs empty, print only `No changes found for <file-path>.` and exit
 
 Rules:
-
 - Inspect diff only.
 - No full-repo scan.
 - Do not test, modify files, or commit.
@@ -34,19 +32,17 @@ Rules:
 - missing tests
 - accessibility issues
 - architectural drift visible in diff
-
-Only report missing tests when changed behavior clearly needs coverage.
-Only suggest minimal behavior-preserving fixes.
-No architectural refactors.
-`None` is valid.
+- Only report missing tests when changed behavior clearly needs coverage.
+- Only suggest minimal behavior-preserving fixes.
+- No architectural refactors.
+- `None` is valid.
 
 Output:
-
 - Caveman style. Fragments.
 - `Blocking: ...`
 - `Bugs: ...`
 - `Risky patterns: ...`
 - `Missing tests: ...`
 - `Risk: low | medium | high`
-If risk != low: propose minimal fix, list files, say why, then print `Type 'continue' to apply the fix or anything else to cancel.`
-If risk = low: print `No changes required.` No refactors. No continue text.
+- If risk != low: propose minimal fix, list files, say why, then print `Type 'continue' to apply the fix or anything else to cancel.`
+- If risk = low: print `No changes required.` No refactors. No continue text.
