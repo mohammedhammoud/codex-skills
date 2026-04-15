@@ -5,9 +5,9 @@ argument-hint: "Describe the task and constraints for end-to-end delivery"
 ---
 
 Use for hands-off delivery.
-Read `AGENTS.md` first. Repo workflow/validation/commit/PR rules win.
 
 Wrapper Skills:
+
 - `audit`
 - `refactor`
 - `commit`
@@ -15,6 +15,7 @@ Wrapper Skills:
 - Open those skills at runtime. Follow them. This skill overrides sequencing, automation, and blocker handling only. If one is unavailable, keep the contract below.
 
 Workflow:
+
 1. Understand request. Inspect only needed code.
 2. Detect relevant remote and default branch.
    - prefer upstream remote
@@ -39,6 +40,7 @@ Workflow:
 14. Apply `create-or-update-pr` standards and create or update draft PR to default branch.
 
 Interaction:
+
 - Run automatically.
 - Do not stop for `continue` prompts from `audit`, `refactor`, `commit`, or `create-or-update-pr` when result is safe and good enough.
 - Treat satisfactory phase result as internal `continue`.
@@ -46,6 +48,7 @@ Interaction:
 - Stop only for real blockers: unsafe checkout, missing required context, unresolved validation failure, push failure, or PR failure.
 
 Guardrails:
+
 - no unrelated edits
 - no extra features
 - do not weaken types, validation, or error handling
@@ -57,6 +60,7 @@ Guardrails:
 - keep PR body to auto-generated change block only
 
 Output:
+
 - branch name
 - commit message
 - validation run

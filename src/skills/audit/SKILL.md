@@ -6,9 +6,9 @@ argument-hint: "staged | changes | <file-path>"
 
 Arg: `staged` | `changes` | `<file-path>`.
 If missing: print only `Usage: audit staged | audit changes | audit <file-path>`; exit.
-Read `AGENTS.md` first. Repo rules win.
 
 Scope:
+
 - `staged`: run `git diff --cached --stat`, then `git diff --cached`
 - `changes`: run `git diff --stat`, then `git diff`
 - `<file-path>`:
@@ -20,6 +20,7 @@ Scope:
   - if both diffs empty, print only `No changes found for <file-path>.` and exit
 
 Rules:
+
 - Inspect diff only.
 - No full-repo scan.
 - Do not test, modify files, or commit.
@@ -38,6 +39,7 @@ Rules:
 - `None` is valid.
 
 Output:
+
 - Caveman style. Fragments.
 - `Blocking: ...`
 - `Bugs: ...`

@@ -6,16 +6,18 @@ argument-hint: "Optional: say if unstaged changes should be included"
 
 Use for PR metadata create/update.
 If current branch already has an open PR, update it. No duplicate PR.
+
 - `git`: inspect branch/remote/default branch, create or switch branch, diff, push current branch
 - `gh`: detect PR, read PR body, create draft PR, update title/body
-Read `AGENTS.md` first. Repo commit/PR rules win.
 
 Rules:
+
 - No shell-script heuristics.
 - Reason over raw diff.
 - Keep output concise.
 
 Workflow:
+
 1. Detect current branch, relevant remote, default branch.
    - prefer upstream remote
    - else `origin` if safe
@@ -39,6 +41,7 @@ Workflow:
 7. Generate metadata from selected raw diff.
 
 Metadata:
+
 - title: Conventional Commit style, lowercase, max 72 chars, unless repo says otherwise
 - body must always use this exact block:
   <!-- auto-pr-metadata:start -->
@@ -54,12 +57,14 @@ Metadata:
 - marker block is the only auto-generated content you may create or replace
 
 Dry Run:
+
 - print proposed title
 - print full body, including markers
 - then print exactly: `Type 'continue' to apply, anything else to cancel.`
 
 Apply:
 Apply only if next reply is exactly `continue`:
+
 1. Re-check committed diff: `git diff <remote>/<default-branch>...HEAD`
 2. If still empty, stop before push or `gh`.
    - say metadata came from staged or unstaged changes only
@@ -71,6 +76,7 @@ Apply only if next reply is exactly `continue`:
 
 Existing PR:
 If PR exists:
+
 - keep current title if still accurate and valid
 - update title only if outdated, inaccurate, or invalid
 - update only marker block content when outdated, inaccurate, missing sections, or markers missing
@@ -80,6 +86,7 @@ If PR exists:
 
 New PR:
 If PR does not exist:
+
 - create draft PR targeting default branch
 - include marker block on first creation
 - print PR URL and final title only

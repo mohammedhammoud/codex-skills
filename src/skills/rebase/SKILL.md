@@ -7,17 +7,19 @@ argument-hint: "Optional: <target-branch> plus extra rebase constraints or confl
 Use for local rebase only. Never push.
 
 Target:
+
 - default: repo default/base branch
 - override only when user gives explicit branch name
 - if override is ambiguous, same as current branch, or cannot be resolved safely, stop and ask
-Read `AGENTS.md` first. Repo Git/safety rules win.
 
 Allowed:
+
 - `git` to inspect branch, remote, base branch, status, diff, rebase state, history; fetch target; run `git rebase` and `git rebase --continue`; stage resolved files with path-scoped `git add`
 - edit only conflicted files and smallest safe scope
 - run smallest relevant validation when it meaningfully reduces merge risk
 
 Start:
+
 - current checkout must be named non-default branch
 - working tree must be clean
 - if on default branch, detached `HEAD`, or dirty tree, stop and ask
@@ -25,6 +27,7 @@ Start:
 - if branch tracks remote, explain that rebasing rewrites local SHAs and may later require force-push; since this skill never pushes, ask before local-only rebase
 
 Refuse:
+
 - refuse if automation looks unsafe
 - say exactly: `Rebase refused: I do not consider this safe to perform automatically because <reason>. You need to do this rebase manually.`
 - if rebase already in progress when risk becomes too high, stop and say user must finish or abort manually
@@ -36,6 +39,7 @@ Refuse:
 - validation failures where correct fix is unclear
 
 Workflow:
+
 1. Determine target branch.
    - use explicit user branch if given
    - else detect safe remote and default/base branch
@@ -60,6 +64,7 @@ Workflow:
 7. End with concise status. State that nothing was pushed.
 
 Ask:
+
 - tree dirty
 - detached `HEAD`, on default branch, or already on target branch
 - explicit target ambiguous or unsafe
@@ -73,6 +78,7 @@ Ask:
 - repo enters unexpected rebase state
 
 Guardrails:
+
 - never run `git push`
 - never run `git push --force` or `git push --force-with-lease`
 - never create or update PR
@@ -90,6 +96,7 @@ Guardrails:
 - if risk is high, refuse
 
 Output:
+
 - target branch and ref used
 - whether target came from default/base detection or explicit user input
 - whether fetch was used

@@ -5,7 +5,7 @@ argument-hint: "Optional: focus area or grouping preference"
 ---
 
 Analyze current changes. Split into coherent commits.
-Read `AGENTS.md` first. Repo commit rules win.
+
 If commitlint config exists, it is authoritative.
 
 Workflow:
